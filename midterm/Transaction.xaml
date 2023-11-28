@@ -1,0 +1,72 @@
+﻿<Window x:Class="midterm.transaction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:midterm"
+        mc:Ignorable="d"
+        Title="TRANSACTION" Height="531" Width="993">
+    <Grid Margin="0,0,5,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="C:\Users\ACER UNIT\Documents\midterm\midterm\bin\Debug\box.png" 
+               Grid.Row="0" 
+               Margin="42,8,798,363"/>
+
+        <Button Content="Search" 
+                HorizontalAlignment="Left" 
+                Height="34" 
+                Margin="606,34,0,0" 
+                VerticalAlignment="Top" 
+                Width="135" 
+                BorderBrush="Black"
+                Background="White"
+                FontWeight="Bold" 
+                FontFamily="Century Gothic" 
+                FontSize="16" 
+                Foreground="Black"/>
+
+        <Button Content="Clear" 
+                HorizontalAlignment="Left" 
+                Height="34" 
+                Margin="495,434,0,0" 
+                VerticalAlignment="Top" 
+                Width="246" 
+                BorderBrush="Black"
+                Background="White" 
+                FontWeight="Bold" 
+                FontFamily="Century Gothic" 
+                FontSize="16" 
+                Foreground="Black"/>
+        <Button Content="Delete Item" 
+                HorizontalAlignment="Left" 
+                Height="34" 
+                Margin="231,433,0,0" 
+                VerticalAlignment="Top" 
+                Width="251" 
+                BorderBrush="Black"
+                Background="White" 
+                FontWeight="Bold" 
+                FontFamily="Century Gothic" 
+                FontSize="16" 
+                Foreground="Black" RenderTransformOrigin="-0.129,0.057"/>
+        <ListView x:Name="Search" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="231,86,246,110">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Transaction ID" DisplayMemberBinding="{Binding TransactionID}" Width="90"/>
+                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductID}" Width="70"/>
+                    <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding User ID}" Width="55"/>
+                    <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" Width="60"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="40"/>
+                    <GridViewColumn Header="Transaction Type" DisplayMemberBinding="{Binding TransactionType}" Width="105"/>
+                    <GridViewColumn Header="Time Stamp" DisplayMemberBinding="{Binding TimeStamp}" Width="80"/>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox HorizontalAlignment="Left" Height="31" Margin="232,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="362"/>
+    </Grid>
+</Window>

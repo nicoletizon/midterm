@@ -1,1 +1,35 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="midtermLogin" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FMS84MH\SQLEXPRESS;Initial Catalog=midtermLogin;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="midterm.Properties.Settings" SettingsPropertyName="midtermLoginConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Table_User" Member="Table_Users">
+    <Type Name="Table_User">
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Table_User_Table_Transaction" Member="Table_Transactions" ThisKey="UserID" OtherKey="UserID" Type="Table_Transaction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Table_Transaction" Member="Table_Transactions">
+    <Type Name="Table_Transaction">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Table_User_Table_Transaction" Member="Table_User" ThisKey="UserID" OtherKey="UserID" Type="Table_User" IsForeignKey="true" />
+      <Association Name="Table_Product_Table_Transaction" Member="Table_Product" ThisKey="ProductID" OtherKey="ProductID" Type="Table_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Table_Product" Member="Table_Products">
+    <Type Name="Table_Product">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[No. of Stock]" Member="No__of_Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="[Selling Price]" Member="Selling_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Table_Product_Table_Transaction" Member="Table_Transactions" ThisKey="ProductID" OtherKey="ProductID" Type="Table_Transaction" />
+    </Type>
+  </Table>
+</Database>

@@ -1,32 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace midterm
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class LoginForm : Window
     {
+        DataClasses1DataContext db = new DataClasses1DataContext();
+
         public LoginForm()
         {
             InitializeComponent();
         }
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            // Your login logic here
+            string inputUsername = txtUsername.Text;
+            string inputPassword = txtPassword.Password;
+
+            if (!string.IsNullOrEmpty(inputUsername) && !string.IsNullOrEmpty(inputPassword))
+            {
+                // Proceed to login
+                if (AuthenticateUser(inputUsername, inputPassword))
+                {
+                    MessageBox.Show("Login Success", "Welcome Back", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    var inventoryWindows = new inventory();
+                    this.Hide();
+                    inventoryWindows.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Username and/or Password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                // Inform the user to input both username and password
+                MessageBox.Show("Please input both username and password.", "Incomplete Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private bool AuthenticateUser(string inputUsername, string inputPassword)
+        {
+            var user = db.Table_Users.SingleOrDefault(u => u.UserID == inputUsername);
+
+            return user != null && user.Password == inputPassword;
         }
     }
 }
